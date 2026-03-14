@@ -18,8 +18,8 @@ app.get('/api/status', (req, res) => {
 // প্রোডাকশনের জন্য React Frontend সার্ভ করা
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-// যেকোনো অজানা রাউটে ইউজার গেলে React-এর index.html সার্ভ করবে
-app.get('*', (req, res) => {
+// Fix: Express এর নতুন আপডেটের জন্য '*' এর বদলে রেগুলার এক্সপ্রেশন /.*/ ব্যবহার করা হলো
+app.get(/.*/, (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
